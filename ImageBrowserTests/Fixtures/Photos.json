@@ -1,0 +1,74 @@
+{
+    "page": 1,
+    "per_page": 3,
+    "photos": [
+        {
+            "id": 33563161,
+            "width": 2500,
+            "height": 2500,
+            "url": "https://www.pexels.com/photo/stylish-succulent-decor-with-plant-books-33563161/",
+            "photographer": "Natalie Goodwin",
+            "photographer_url": "https://www.pexels.com/@natalie-goodwin-2148267387",
+            "photographer_id": 2148267387,
+            "avg_color": "#B0A390",
+            "src": {
+                "original": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg",
+                "large2x": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "A trendy succulent in a red pot atop plant-themed books, perfect for interior design inspiration."
+        },
+        {
+            "id": 34408249,
+            "width": 3783,
+            "height": 5675,
+            "url": "https://www.pexels.com/photo/rustic-alpine-cabins-overlooking-schladming-lake-34408249/",
+            "photographer": "Michael Fischer",
+            "photographer_url": "https://www.pexels.com/@michael-fischer-2156849519",
+            "photographer_id": 2156849519,
+            "avg_color": "#5D5433",
+            "src": {
+                "original": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg",
+                "large2x": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/34408249/pexels-photo-34408249.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "Charming wooden cabins by a tranquil lake in Schladming, Austria, amidst stunning autumn alpine backdrop."
+        },
+        {
+            "id": 34498321,
+            "width": 4464,
+            "height": 6696,
+            "url": "https://www.pexels.com/photo/scenic-autumn-landscape-in-styria-austria-34498321/",
+            "photographer": "Frank Wesneck",
+            "photographer_url": "https://www.pexels.com/@frank-wesneck-2154020533",
+            "photographer_id": 2154020533,
+            "avg_color": "#837F64",
+            "src": {
+                "original": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg",
+                "large2x": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/34498321/pexels-photo-34498321.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "Picturesque autumn view of a lone tree and cabin with snow-capped mountains in Styria, Austria."
+        }
+    ],
+    "total_results": 61101,
+    "next_page": "https://api.pexels.com/v1/curated?page=2&per_page=3"
+}
