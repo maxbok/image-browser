@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		507F20502F4109E800994ADB /* NVMColor in Frameworks */ = {isa = PBXBuildFile; productRef = 507F204F2F4109E800994ADB /* NVMColor */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5072ECD52F3FCA3F00D6D2E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507F20502F4109E800994ADB /* NVMColor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = ImageBrowser;
 			packageProductDependencies = (
+				507F204F2F4109E800994ADB /* NVMColor */,
 			);
 			productName = ImageBrowser;
 			productReference = 5072ECC72F3FCA3E00D6D2E0 /* ImageBrowser.app */;
@@ -147,6 +153,9 @@
 			);
 			mainGroup = 5072ECBE2F3FCA3D00D6D2E0;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				507F204E2F4109E800994ADB /* XCRemoteSwiftPackageReference "nvm-color" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5072ECC82F3FCA3E00D6D2E0 /* Products */;
 			projectDirPath = "";
@@ -460,6 +469,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		507F204E2F4109E800994ADB /* XCRemoteSwiftPackageReference "nvm-color" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NVMNovem/nvm-color";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		507F204F2F4109E800994ADB /* NVMColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507F204E2F4109E800994ADB /* XCRemoteSwiftPackageReference "nvm-color" */;
+			productName = NVMColor;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5072ECBF2F3FCA3E00D6D2E0 /* Project object */;
 }

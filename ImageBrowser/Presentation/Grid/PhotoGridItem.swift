@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NVMColor
 
 struct PhotoGridItem: View {
 
@@ -14,7 +15,7 @@ struct PhotoGridItem: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             // TODO: Display actual photo
-            Color.teal
+            Color(hex: photo.averageHexColor)
 
             text
         }
