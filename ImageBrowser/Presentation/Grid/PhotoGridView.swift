@@ -21,18 +21,26 @@ struct PhotoGridView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns) {
-                ForEach(viewModel.photos) { photo in
+                ForEach(Array(viewModel.photos.enumerated()), id: \.offset) { _, photo in
                     PhotoGridItem(photo: photo)
+                        .task {
+                            guard photo == viewModel.photos.last else { return }
+
+                            await viewModel.fetchNextPage()
+                        }
                 }
             }
             .padding(.horizontal)
 
-            Color.clear
-                .task {
-                    await viewModel.fetchNextPage()
-                }
+            if viewModel.isLoading {
+                // TODO: Improve this
+                Text("Loading...")
+            }
         }
         .navigationTitle("grid.title")
+        .task {
+            await viewModel.fetchNextPage()
+        }
     }
 
 }

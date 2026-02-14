@@ -23,6 +23,7 @@ actor Session: SessionConvertible {
         guard let response = response as? HTTPURLResponse else {
             throw Error.unknownResponseType
         }
+
         let code = response.statusCode
         guard (200 ..< 400).contains(code) else {
             throw Error.requestFailed(code: code)

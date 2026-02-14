@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Photo: Identifiable, Decodable {
+struct Photo: Identifiable, Equatable, Decodable {
 
     let id: Int
     let photographer: String
@@ -21,6 +21,10 @@ struct Photo: Identifiable, Decodable {
         case description = "alt"
         case averageHexColor = "avg_color"
         case source = "src"
+    }
+
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        lhs.id == rhs.id
     }
 
 }

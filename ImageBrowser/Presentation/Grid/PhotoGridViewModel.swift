@@ -10,6 +10,7 @@ import Combine
 @MainActor
 class PhotoGridViewModel: ObservableObject {
 
+    @Published private(set) var isLoading = false
     @Published private(set) var photos: [Photo] = []
 
     private let limitPerPage = 10
@@ -23,6 +24,13 @@ class PhotoGridViewModel: ObservableObject {
     }
 
     func fetchNextPage() async {
+        guard !isLoading else { return }
+
+        isLoading = true
+        defer {
+            isLoading = false
+        }
+
         do {
             var page = lastFetchedPage
             page += 1
