@@ -9,7 +9,7 @@ actor PhotoRepository: PhotoRepositoryConvertible {
 
     private let session: SessionConvertible
 
-    init(session: SessionConvertible) {
+    init(session: SessionConvertible = Session()) {
         self.session = session
     }
 

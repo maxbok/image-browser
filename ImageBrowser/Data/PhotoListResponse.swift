@@ -7,19 +7,26 @@
 
 import Foundation
 
-struct PhotoListResponse: Decodable {
+struct PhotoListResponse {
 
     let photos: [Photo]
+    let hasNextPage: Bool
 
-    var hasNextPage: Bool {
-        nextPage != nil
-    }
+}
 
-    private var nextPage: URL?
+extension PhotoListResponse: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case photos
         case nextPage = "next_page"
+    }
+
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        photos = try container.decode([Photo].self, forKey: .photos)
+        let nextPage = try container.decodeIfPresent(String.self, forKey: .nextPage)
+        hasNextPage = nextPage != nil
     }
 
 }
