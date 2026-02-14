@@ -13,8 +13,10 @@ import Foundation
 struct PhotoGridViewModelTests {
 
     let photo = Photo(
+        id: 1,
         photographer: "",
         description: "",
+        averageHexColor: "",
         source: Photo.Source(
             tiny: .tinyPhoto,
             large: .largePhoto

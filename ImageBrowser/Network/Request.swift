@@ -49,7 +49,7 @@ extension Request {
 
     private var path: String {
         switch self {
-        case .curatedImages: "v1/curated"
+        case .curatedImages: "/v1/curated"
         }
     }
 

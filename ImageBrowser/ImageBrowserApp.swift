@@ -11,7 +11,9 @@ import SwiftUI
 struct ImageBrowserApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                PhotoGridView()
+            }
         }
     }
 }
