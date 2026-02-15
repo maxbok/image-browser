@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import NVMColor
 
 struct PhotoGridItem: View {
 
@@ -14,30 +13,11 @@ struct PhotoGridItem: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            image
+            RemotePhoto(photo: photo, size: .tiny)
             text
         }
         .aspectRatio(1, contentMode: .fit)
         .cornerRadius(.smallCornerRadius)
-    }
-
-    // MARK: - Image
-
-    var image: some View {
-        AsyncImage(
-            url: photo.source.tiny,
-            content: { image in
-                Color.clear
-                    .overlay {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }
-            },
-            placeholder: {
-                Color(hex: photo.averageHexColor)
-            }
-        )
     }
 
     // MARK: - Text
