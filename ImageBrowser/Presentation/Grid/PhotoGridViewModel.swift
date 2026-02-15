@@ -13,6 +13,8 @@ class PhotoGridViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published private(set) var photos: [Photo] = []
 
+    @Published var selectedPhoto: Photo?
+
     private let limitPerPage = 10
     private var lastFetchedPage = 0
     private var hasNextPage = true

@@ -13,6 +13,7 @@ extension CGFloat {
 
     static let smallPadding: CGFloat = 8
     static let mediumPadding: CGFloat = 16
+    static let largePadding: CGFloat = 64
 
 }
 
@@ -21,5 +22,14 @@ extension CGFloat {
 extension CGFloat {
 
     static let smallCornerRadius: CGFloat = 16
+    static let largeCornerRadius: CGFloat = 48
+
+}
+
+// MARK: - Shadows
+
+extension CGFloat {
+
+    static let largeShadowRadius: CGFloat = 16
 
 }

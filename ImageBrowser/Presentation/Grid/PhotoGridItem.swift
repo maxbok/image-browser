@@ -10,13 +10,32 @@ import SwiftUI
 struct PhotoGridItem: View {
 
     let photo: Photo
+    let namespace: Namespace.ID
+    let action: () -> Void
 
     var body: some View {
+        Button(action: action) {
+            content
+        }
+        .buttonStyle(ScaleButtonStyle())
+    }
+
+    // MARK: - Content
+
+    var content: some View {
         ZStack(alignment: .bottomLeading) {
             RemotePhoto(photo: photo, size: .tiny)
+                .ignoreIntrinsicSize()
+                .matchedGeometryEffect(
+                    photo: photo,
+                    element: .content,
+                    in: namespace
+                )
+
             text
         }
         .aspectRatio(1, contentMode: .fit)
+        .clipped()
         .cornerRadius(.smallCornerRadius)
     }
 
@@ -27,11 +46,21 @@ struct PhotoGridItem: View {
             Text(photo.photographer)
                 .lineLimit(1)
                 .font(.gridItemTitle)
+                .matchedGeometryEffect(
+                    photo: photo,
+                    element: .photographer,
+                    in: namespace
+                )
             if !photo.description.isEmpty {
                 Text(photo.description)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .font(.gridItemDescription)
+                    .matchedGeometryEffect(
+                        photo: photo,
+                        element: .description,
+                        in: namespace
+                    )
             }
         }
         .foregroundStyle(Color.gridText)
@@ -52,20 +81,29 @@ struct PhotoGridItem: View {
 
 }
 
+private struct ScaleButtonStyle: ButtonStyle {
+
+    private let scaledValue: CGFloat = 0.95
+    private let animation: Animation = .easeInOut(duration: 0.15)
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scaledValue : 1)
+            .animation(animation, value: configuration.isPressed)
+    }
+
+}
+
 struct PhotoGridItem_Previews: PreviewProvider {
 
     static var previews: some View {
-        PhotoGridItem(
-            photo: .preview
-        )
-        .colorScheme(.light)
-        .previewLayout(.fixed(width: 120, height: 120))
+        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue) {}
+            .colorScheme(.light)
+            .previewLayout(.fixed(width: 120, height: 120))
 
-        PhotoGridItem(
-            photo: .preview
-        )
-        .colorScheme(.dark)
-        .previewLayout(.fixed(width: 120, height: 120))
+        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue) {}
+            .colorScheme(.dark)
+            .previewLayout(.fixed(width: 120, height: 120))
     }
 
 }

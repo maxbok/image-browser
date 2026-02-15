@@ -17,6 +17,8 @@ struct PhotoGridViewModelTests {
         photographer: "",
         description: "",
         averageHexColor: "",
+        width: 100,
+        height: 200,
         source: Photo.Source(
             tiny: .tinyPhoto,
             large: .largePhoto

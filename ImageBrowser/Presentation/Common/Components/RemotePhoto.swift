@@ -12,6 +12,7 @@ struct RemotePhoto: View {
 
     enum Size {
         case tiny
+        case large
     }
 
     let photo: Photo
@@ -21,12 +22,9 @@ struct RemotePhoto: View {
         AsyncImage(
             url: url,
             content: { image in
-                Color.clear
-                    .overlay {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
             },
             placeholder: {
                 Color(hex: photo.averageHexColor)
@@ -43,6 +41,7 @@ extension RemotePhoto {
     var url: URL {
         switch size {
         case .tiny: photo.source.tiny
+        case .large: photo.source.large
         }
     }
 
@@ -52,7 +51,7 @@ struct RemotePhoto_Previews: PreviewProvider {
 
     static var previews: some View {
         RemotePhoto(photo: .preview, size: .tiny)
-            .previewLayout(.fixed(width: 120, height: 200))
+            .previewLayout(.fixed(width: 120, height: 120))
     }
 
 }
