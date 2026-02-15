@@ -49,4 +49,23 @@ struct PhotoGridViewModelTests {
         #expect(viewModel.photos.count == 4)
     }
 
+    @Test func `Do not request next page when at the end of the list`() async throws {
+        #expect(viewModel.photos.isEmpty)
+
+        let response = PhotoListResponse(photos: [photo], hasNextPage: false)
+        await repository.update(response: response)
+
+        // Fetch 1st page
+        await viewModel.fetchNextPage()
+
+        await #expect(repository.lastRequestedPage == 1)
+        #expect(viewModel.photos.count == 1)
+
+        // No 2nd page to fetch
+        await viewModel.fetchNextPage()
+
+        await #expect(repository.lastRequestedPage == 1)
+        #expect(viewModel.photos.count == 1)
+    }
+
 }

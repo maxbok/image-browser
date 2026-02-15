@@ -24,7 +24,9 @@ class PhotoGridViewModel: ObservableObject {
     }
 
     func fetchNextPage() async {
-        guard !isLoading else { return }
+        guard !isLoading,
+              hasNextPage
+        else { return }
 
         isLoading = true
         defer {
