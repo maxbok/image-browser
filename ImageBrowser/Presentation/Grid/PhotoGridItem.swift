@@ -35,8 +35,10 @@ struct PhotoGridItem: View {
             }
         }
         .foregroundStyle(Color.gridText)
-        .padding(.smallPadding)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, .smallPadding)
+        .padding(.bottom, .smallPadding)
+        .padding(.top, .mediumPadding) // Improves text readability with a higher backdrop
         .background(textBackdrop)
     }
 

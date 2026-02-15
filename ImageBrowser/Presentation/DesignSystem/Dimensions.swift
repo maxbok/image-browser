@@ -12,6 +12,7 @@ import Foundation
 extension CGFloat {
 
     static let smallPadding: CGFloat = 8
+    static let mediumPadding: CGFloat = 16
 
 }
 
