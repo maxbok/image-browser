@@ -1,0 +1,73 @@
+{
+    "page": 1,
+    "per_page": 3,
+    "photos": [
+        {
+            "id": 33563161,
+            "width": 2500,
+            "height": 2500,
+            "url": "https://www.pexels.com/photo/stylish-succulent-decor-with-plant-books-33563161/",
+            "photographer": "Natalie Goodwin",
+            "photographer_url": "https://www.pexels.com/@natalie-goodwin-2148267387",
+            "photographer_id": 2148267387,
+            "avg_color": "#B0A390",
+            "src": {
+                "original": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg",
+                "large2x": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "A trendy succulent in a red pot atop plant-themed books, perfect for interior design inspiration."
+        },
+        {
+            "id": 35588219,
+            "width": 4000,
+            "height": 6016,
+            "url": "https://www.pexels.com/photo/misty-andes-mountains-landscape-in-peru-35588219/",
+            "photographer": "Susan  Flores",
+            "photographer_url": "https://www.pexels.com/@susan-flores-232226967",
+            "photographer_id": 232226967,
+            "avg_color": "#74787B",
+            "src": {
+                "original": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg",
+                "large2x": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/35588219/pexels-photo-35588219.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "Dramatic Andean landscape with mist and rugged mountain peaks near Cuzco, Peru."
+        },
+        {
+            "id": 34872312,
+            "width": 3024,
+            "height": 4032,
+            "url": "https://www.pexels.com/photo/vintage-camera-with-blue-photo-album-34872312/",
+            "photographer": "Eugenia Remark",
+            "photographer_url": "https://www.pexels.com/@eugenia-remark-5767088",
+            "photographer_id": 5767088,
+            "avg_color": "#A6ADB3",
+            "src": {
+                "original": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg",
+                "large2x": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "large": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+                "medium": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "small": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&h=130",
+                "portrait": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+                "landscape": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+                "tiny": "https://images.pexels.com/photos/34872312/pexels-photo-34872312.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+            },
+            "liked": false,
+            "alt": "Top-down view of a vintage camera, blue photo album, and hair clip on a white surface."
+        }
+    ],
+    "total_results": 61081
+}

@@ -11,9 +11,10 @@ import Foundation
 actor SessionMock: SessionConvertible {
 
     private var fixtureName: String?
+    private var fixtureNameOverrideBlock: (@Sendable (Request) -> String?)?
 
     func send<Object: Decodable & Sendable>(request: Request) async throws -> Object {
-        guard let fixtureName else {
+        guard let fixtureName = fixtureNameOverrideBlock?(request) ?? fixtureName else {
             throw Error.noFixtureName
         }
         guard let fixturePath = Bundle.test.url(forResource: fixtureName, withExtension: "json") else {
@@ -34,10 +35,16 @@ extension SessionMock {
 
 }
 
+// MARK: - Updates
+
 extension SessionMock {
 
     func update(fixtureName: String) {
         self.fixtureName = fixtureName
+    }
+
+    func fixtureNameOverride(block: (@escaping @Sendable (Request) -> String?)) {
+        fixtureNameOverrideBlock = block
     }
 
 }

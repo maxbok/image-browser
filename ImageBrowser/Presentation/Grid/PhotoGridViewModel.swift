@@ -15,8 +15,6 @@ class PhotoGridViewModel: ObservableObject {
 
     @Published var selectedPhoto: Photo?
 
-    private let limitPerPage = 10
-    private var lastFetchedPage = 0
     private var hasNextPage = true
 
     private let repository: PhotoRepositoryConvertible
@@ -36,13 +34,9 @@ class PhotoGridViewModel: ObservableObject {
         }
 
         do {
-            var page = lastFetchedPage
-            page += 1
-            let response = try await repository.curatedPhotos(at: page, limit: limitPerPage)
-            lastFetchedPage = page
-
-            photos.append(contentsOf: response.photos)
-            hasNextPage = response.hasNextPage
+            let result = try await repository.fetchNextPage()
+            hasNextPage = result.hasNextPage
+            photos = await repository.photos
         } catch {
             // TODO: Handle errors
         }

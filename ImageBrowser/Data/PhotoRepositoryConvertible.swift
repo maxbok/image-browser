@@ -7,6 +7,8 @@
 
 protocol PhotoRepositoryConvertible: Actor {
 
-    func curatedPhotos(at page: Int, limit: Int) async throws -> PhotoListResponse
+    var photos: [Photo] { get }
+
+    func fetchNextPage() async throws -> PhotoRepository.FetchPageResult
 
 }

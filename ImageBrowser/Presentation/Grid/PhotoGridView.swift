@@ -59,7 +59,7 @@ struct PhotoGridView: View {
 
     var grid: some View {
         LazyVGrid(columns: columns) {
-            ForEach(Array(viewModel.photos.enumerated()), id: \.offset) { _, photo in
+            ForEach(viewModel.photos, id: \.id) { photo in
                 item(with: photo)
             }
         }

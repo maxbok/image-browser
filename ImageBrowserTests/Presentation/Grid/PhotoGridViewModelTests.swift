@@ -35,8 +35,7 @@ struct PhotoGridViewModelTests {
     @Test func `Should load next page when requested`() async throws {
         #expect(viewModel.photos.isEmpty)
 
-        let response = PhotoListResponse(photos: [photo, photo], hasNextPage: true)
-        await repository.update(response: response)
+        await repository.update(photos: [photo, photo])
 
         // Fetch 1st page
         await viewModel.fetchNextPage()
@@ -44,24 +43,27 @@ struct PhotoGridViewModelTests {
         await #expect(repository.lastRequestedPage == 1)
         #expect(viewModel.photos.count == 2)
 
+        await repository.update(photos: [photo, photo, photo])
+
         // Fetch 2nd page
         await viewModel.fetchNextPage()
 
         await #expect(repository.lastRequestedPage == 2)
-        #expect(viewModel.photos.count == 4)
+        #expect(viewModel.photos.count == 3)
     }
 
     @Test func `Do not request next page when at the end of the list`() async throws {
         #expect(viewModel.photos.isEmpty)
 
-        let response = PhotoListResponse(photos: [photo], hasNextPage: false)
-        await repository.update(response: response)
+        await repository.update(photos: [photo])
 
         // Fetch 1st page
         await viewModel.fetchNextPage()
 
         await #expect(repository.lastRequestedPage == 1)
         #expect(viewModel.photos.count == 1)
+
+        await repository.update(hasNextPage: false)
 
         // No 2nd page to fetch
         await viewModel.fetchNextPage()

@@ -10,29 +10,39 @@ import Foundation
 
 actor PhotoRepositoryMock: PhotoRepositoryConvertible {
 
+    var photos: [Photo] = []
+
+    var hasNextPage = true
+
     enum Error: Swift.Error {
         case noResponse
     }
 
     private(set) var response: PhotoListResponse?
 
-    private(set) var lastRequestedPage: Int?
+    private(set) var lastRequestedPage = 0
 
-    func curatedPhotos(at page: Int, limit: Int) async throws -> PhotoListResponse {
-        lastRequestedPage = page
-
-        guard let response else {
-            throw Error.noResponse
+    func fetchNextPage() async throws -> PhotoRepository.FetchPageResult {
+        guard hasNextPage else {
+            return .init(hasNextPage: false)
         }
-        return response
+
+        lastRequestedPage += 1
+        return .init(hasNextPage: true)
     }
 
 }
 
+// MARK: - Updates
+
 extension PhotoRepositoryMock {
 
-    func update(response: PhotoListResponse) {
-        self.response = response
+    func update(photos: [Photo]) {
+        self.photos = photos
+    }
+
+    func update(hasNextPage: Bool) {
+        self.hasNextPage = hasNextPage
     }
 
 }
