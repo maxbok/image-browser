@@ -27,33 +27,37 @@ extension Request {
 
 extension Request {
 
-    var urlRequest: URLRequest {
-        get throws {
-            var components = URLComponents()
-            components.scheme = "https"
-            components.host = host
-            components.path = path
-            components.queryItems = queryItems
+    func urlRequest(with apiKey: String?) throws -> URLRequest {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = host
+        components.path = path
+        components.queryItems = queryItems
 
-            guard let url = components.url else {
-                throw Error.couldNotCreateURLRequest
-            }
-
-            return URLRequest(url: url)
+        guard let url = components.url else {
+            throw Error.couldNotCreateURLRequest
         }
+
+        var request = URLRequest(url: url)
+        request.setValue(apiKey, forHTTPHeaderField: "Authorization")
+        return request
     }
 
-    private var host: String {
+}
+
+private extension Request {
+
+    var host: String {
         "api.pexels.com"
     }
 
-    private var path: String {
+    var path: String {
         switch self {
         case .curatedImages: "/v1/curated"
         }
     }
 
-    private var queryItems: [URLQueryItem] {
+    var queryItems: [URLQueryItem] {
         switch self {
         case let .curatedImages(page, limit):
             [
