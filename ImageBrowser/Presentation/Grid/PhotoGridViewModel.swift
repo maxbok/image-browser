@@ -15,6 +15,8 @@ class PhotoGridViewModel: ObservableObject {
 
     @Published var selectedPhoto: Photo?
 
+    @Published var query = ""
+
     private var hasNextPage = true
 
     private let repository: PhotoRepositoryConvertible

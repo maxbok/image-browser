@@ -23,12 +23,14 @@ struct PhotoGridView: View {
     }
 
     var body: some View {
-        ScrollView {
-            title
-            grid
+        NavigationStack {
+            ScrollView {
+                grid
+            }
+            .scrollIndicators(.hidden)
+            .searchable(text: $viewModel.query, prompt: "search.prompt")
+            .navigationTitle("grid.title")
         }
-        .scrollIndicators(.hidden)
-        .padding(.horizontal)
         .overlayTransition(item: $viewModel.selectedPhoto) { photo in
             PhotoDetailView(
                 photo: photo,
@@ -45,13 +47,6 @@ struct PhotoGridView: View {
         }
     }
 
-    private var title: some View {
-        Text("grid.title")
-            .font(.gridTitle)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical)
-    }
-
     // MARK: - Grid
 
     private var grid: some View {
@@ -64,6 +59,7 @@ struct PhotoGridView: View {
                 skeletonItems
             }
         }
+        .padding(.horizontal)
     }
 
     private var skeletonItemsCount: Int {

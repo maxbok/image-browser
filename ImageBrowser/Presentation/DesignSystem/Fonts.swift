@@ -9,7 +9,6 @@ import SwiftUI
 
 extension Font {
 
-    static let gridTitle: Font = .system(size: 36, weight: .bold)
     static let gridItemTitle: Font = .system(size: 9, weight: .bold)
     static let gridItemDescription: Font = .system(size: 9, weight: .regular)
 
