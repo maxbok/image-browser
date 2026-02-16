@@ -37,7 +37,7 @@ struct PhotoRepositoryTests {
         #expect(photo.description == "A trendy succulent in a red pot atop plant-themed books, perfect for interior design inspiration.")
         #expect(photo.averageHexColor == "#B0A390")
         #expect(photo.source.tiny.absoluteString == "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280")
-        #expect(photo.source.large.absoluteString == "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&h=650&w=940")
+        #expect(photo.source.large.absoluteString == "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     }
 
     @Test func `Should ensure photos uniqueness accross pages`() async throws {

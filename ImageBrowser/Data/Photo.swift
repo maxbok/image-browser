@@ -42,6 +42,11 @@ extension Photo {
         let tiny: URL
         let large: URL
 
+        private enum CodingKeys: String, CodingKey {
+            case tiny
+            case large = "large2x"
+        }
+
     }
 
 }
