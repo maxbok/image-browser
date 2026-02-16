@@ -36,9 +36,7 @@ struct PhotoGridView: View {
                 photo: photo,
                 namespace: namespace,
                 dismiss: {
-                    withAnimation(.easeInOut) {
-                        viewModel.selectedPhoto = nil
-                    }
+                    viewModel.selectedPhoto = nil
                 }
             )
         }
@@ -78,9 +76,7 @@ struct PhotoGridView: View {
             namespace: namespace,
             isSource: viewModel.selectedPhoto == nil
         ) {
-            withAnimation(.easeInOut) {
-                viewModel.selectedPhoto = photo
-            }
+            viewModel.selectedPhoto = photo
         }
         .task {
             guard photo == viewModel.photos.last else { return }

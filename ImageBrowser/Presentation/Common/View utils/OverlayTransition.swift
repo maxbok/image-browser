@@ -19,6 +19,7 @@ extension View {
                     .zIndex(1)
             }
         }
+        .animation(.easeInOut, value: item.wrappedValue == nil)
     }
 
 }
