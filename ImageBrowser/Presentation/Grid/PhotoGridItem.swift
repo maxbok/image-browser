@@ -11,6 +11,7 @@ struct PhotoGridItem: View {
 
     let photo: Photo
     let namespace: Namespace.ID
+    let isSource: Bool
     let action: () -> Void
 
     var body: some View {
@@ -29,7 +30,8 @@ struct PhotoGridItem: View {
                 .matchedGeometryEffect(
                     photo: photo,
                     element: .content,
-                    in: namespace
+                    in: namespace,
+                    isSource: isSource
                 )
 
             text
@@ -49,7 +51,8 @@ struct PhotoGridItem: View {
                 .matchedGeometryEffect(
                     photo: photo,
                     element: .photographer,
-                    in: namespace
+                    in: namespace,
+                    isSource: isSource
                 )
             if !photo.description.isEmpty {
                 Text(photo.description)
@@ -59,7 +62,8 @@ struct PhotoGridItem: View {
                     .matchedGeometryEffect(
                         photo: photo,
                         element: .description,
-                        in: namespace
+                        in: namespace,
+                        isSource: isSource
                     )
             }
         }
@@ -97,11 +101,11 @@ private struct ScaleButtonStyle: ButtonStyle {
 struct PhotoGridItem_Previews: PreviewProvider {
 
     static var previews: some View {
-        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue) {}
+        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue, isSource: true) {}
             .colorScheme(.light)
             .previewLayout(.fixed(width: 120, height: 120))
 
-        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue) {}
+        PhotoGridItem(photo: .preview, namespace: Namespace().wrappedValue, isSource: true) {}
             .colorScheme(.dark)
             .previewLayout(.fixed(width: 120, height: 120))
     }

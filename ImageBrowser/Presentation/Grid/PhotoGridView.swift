@@ -66,7 +66,11 @@ struct PhotoGridView: View {
     }
 
     func item(with photo: Photo) -> some View {
-        PhotoGridItem(photo: photo, namespace: namespace) {
+        PhotoGridItem(
+            photo: photo,
+            namespace: namespace,
+            isSource: viewModel.selectedPhoto == nil
+        ) {
             withAnimation(.easeInOut) {
                 viewModel.selectedPhoto = photo
             }

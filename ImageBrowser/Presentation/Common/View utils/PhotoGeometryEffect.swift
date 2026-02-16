@@ -9,11 +9,15 @@ import SwiftUI
 
 extension View {
 
-    func matchedGeometryEffect(photo: Photo, element: PhotoGeometryEffectElement, in namespace: Namespace.ID) -> some View {
+    func matchedGeometryEffect(photo: Photo,
+                               element: PhotoGeometryEffectElement,
+                               in namespace: Namespace.ID,
+                               isSource: Bool = true)
+    -> some View {
         matchedGeometryEffect(
             id: "\(element.rawValue)_\(photo.id)",
             in: namespace,
-            isSource: true
+            isSource: isSource
         )
     }
 
