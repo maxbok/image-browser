@@ -23,7 +23,7 @@ struct PhotoGridItem: View {
 
     // MARK: - Content
 
-    var content: some View {
+    private var content: some View {
         ZStack(alignment: .bottomLeading) {
             RemotePhoto(photo: photo, size: .tiny)
                 .ignoreIntrinsicSize()
@@ -43,7 +43,7 @@ struct PhotoGridItem: View {
 
     // MARK: - Text
 
-    var text: some View {
+    private var text: some View {
         VStack(alignment: .leading) {
             Text(photo.photographer)
                 .lineLimit(1)
@@ -75,7 +75,7 @@ struct PhotoGridItem: View {
         .background(textBackdrop)
     }
 
-    var textBackdrop: some View {
+    private var textBackdrop: some View {
         LinearGradient(
             colors: [.clear, .gridTextBackdrop],
             startPoint: .top,

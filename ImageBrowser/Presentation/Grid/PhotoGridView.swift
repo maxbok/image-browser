@@ -13,24 +13,21 @@ struct PhotoGridView: View {
 
     @Namespace private var namespace
 
-    var columns: [GridItem] {
+    private let columnsCount = 3
+
+    private var columns: [GridItem] {
         Array(
             repeating: GridItem(.flexible(), spacing: .smallPadding),
-            count: 3
+            count: columnsCount
         )
     }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView {
             title
-
             grid
-
-            if viewModel.isLoading {
-                // TODO: Improve this
-                Text("Loading...")
-            }
         }
+        .scrollIndicators(.hidden)
         .padding(.horizontal)
         .overlayTransition(item: $viewModel.selectedPhoto) { photo in
             PhotoDetailView(
@@ -48,7 +45,7 @@ struct PhotoGridView: View {
         }
     }
 
-    var title: some View {
+    private var title: some View {
         Text("grid.title")
             .font(.gridTitle)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -57,15 +54,29 @@ struct PhotoGridView: View {
 
     // MARK: - Grid
 
-    var grid: some View {
+    private var grid: some View {
         LazyVGrid(columns: columns) {
             ForEach(viewModel.photos, id: \.id) { photo in
                 item(with: photo)
             }
+
+            if viewModel.isLoading {
+                skeletonItems
+            }
         }
     }
 
-    func item(with photo: Photo) -> some View {
+    private var skeletonItemsCount: Int {
+        columnsCount - viewModel.photos.count % columnsCount
+    }
+
+    private var skeletonItems: some View {
+        ForEach(0 ..< skeletonItemsCount, id: \.self) { _ in
+            GridItemSkeleton()
+        }
+    }
+
+    private func item(with photo: Photo) -> some View {
         PhotoGridItem(
             photo: photo,
             namespace: namespace,

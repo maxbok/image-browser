@@ -36,7 +36,7 @@ struct PhotoDetailView: View {
             }
     }
 
-    var photoView: some View {
+    private var photoView: some View {
         RemotePhoto(photo: photo, size: .large)
             .aspectRatio(photo.aspectRatio, contentMode: .fit)
             .cornerRadius(.largeCornerRadius)
@@ -48,7 +48,7 @@ struct PhotoDetailView: View {
             )
     }
 
-    var text: some View {
+    private var text: some View {
         VStack(alignment: .leading) {
             Text("\(photo.photographer) 📸")
                 .font(.detailTitle)
