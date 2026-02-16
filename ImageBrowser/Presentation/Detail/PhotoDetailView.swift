@@ -13,7 +13,7 @@ struct PhotoDetailView: View {
     let photo: Photo
     let namespace: Namespace.ID
     let dismiss: () -> Void
-
+    
     var body: some View {
             ZStack(alignment: .topTrailing) {
                 ScrollView {
@@ -28,6 +28,7 @@ struct PhotoDetailView: View {
 
                 CloseButton(action: dismiss)
                     .padding(.horizontal)
+                    .padding(.landscape, .top, .smallPadding)
             }
             .background {
                 Color(hex: photo.averageHexColor)
