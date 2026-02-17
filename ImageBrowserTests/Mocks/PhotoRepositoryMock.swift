@@ -22,7 +22,7 @@ actor PhotoRepositoryMock: PhotoRepositoryConvertible {
 
     private(set) var lastRequestedPage = 0
 
-    func fetchNextPage() async throws -> PhotoRepository.FetchPageResult {
+    func fetchNextPage() async throws -> PagerResult {
         guard hasNextPage else {
             return .init(hasNextPage: false)
         }

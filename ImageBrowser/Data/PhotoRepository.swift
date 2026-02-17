@@ -7,14 +7,13 @@
 
 actor PhotoRepository: PhotoRepositoryConvertible {
 
-    struct FetchPageResult {
-        let hasNextPage: Bool
+    var photos: [Photo] {
+        get async {
+            await curatedPager.items
+        }
     }
 
-    private(set) var photos: [Photo] = []
-
-    private let limitPerPage = 10
-    private var lastFetchedPage = 0
+    private let curatedPager = Pager<Photo>()
 
     private let session: SessionConvertible
 
@@ -22,35 +21,16 @@ actor PhotoRepository: PhotoRepositoryConvertible {
         self.session = session
     }
 
-    func fetchNextPage() async throws -> FetchPageResult {
-        var page = lastFetchedPage
-        page += 1
-
-        let request: Request = .curatedImages(page: page, limit: limitPerPage)
-        let response: PhotoListResponse = try await session.send(request: request)
-
-        let filteredPhotos = removeDuplicates(in: response.photos)
-        lastFetchedPage = page
-
-        guard !filteredPhotos.isEmpty else {
-            guard response.hasNextPage else {
-                return FetchPageResult(hasNextPage: false)
-            }
-            return try await fetchNextPage()
+    func fetchNextPage() async throws -> PagerResult {
+        try await curatedPager.fetchNextPage { page, limitPerPage in
+            let request: Request = .curatedImages(page: page, limit: limitPerPage)
+            return try await execute(request: request)
         }
-
-        photos.append(contentsOf: filteredPhotos)
-
-        return FetchPageResult(hasNextPage: response.hasNextPage)
     }
 
-    private func removeDuplicates(in otherPhotos: [Photo]) -> [Photo] {
-        // Map ids once
-        let photoIDs = photos.map(\.id)
-        // Ensure uniqueness accross pages
-        return otherPhotos.filter {
-            !photoIDs.contains($0.id)
-        }
+    private func execute(request: Request) async throws -> Pager<Photo>.PageResponse {
+        let response: PhotoListResponse = try await session.send(request: request)
+        return (items: response.photos, hasMore: response.hasNextPage)
     }
 
 }
