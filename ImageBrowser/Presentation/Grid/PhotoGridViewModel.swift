@@ -17,17 +17,24 @@ class PhotoGridViewModel: ObservableObject {
 
     @Published var query = ""
 
-    private var hasNextPage = true
+    private var hasMore = true
 
+    private var currentPager: Pager<Photo>?
     private let repository: PhotoRepositoryConvertible
 
     init(repository: PhotoRepositoryConvertible = PhotoRepository()) {
         self.repository = repository
     }
 
-    func fetchNextPage() async {
-        guard !isLoading,
-              hasNextPage
+    func onAppear() async {
+        currentPager = await repository.pager(for: .curated)
+        await loadMore()
+    }
+
+    func loadMore() async {
+        guard let currentPager,
+              !isLoading,
+              hasMore
         else { return }
 
         isLoading = true
@@ -36,9 +43,9 @@ class PhotoGridViewModel: ObservableObject {
         }
 
         do {
-            let result = try await repository.fetchNextPage()
-            hasNextPage = result.hasNextPage
-            photos = await repository.photos
+            let result = try await currentPager.loadMore()
+            hasMore = result.hasNextPage
+            photos = await currentPager.items
         } catch {
             // TODO: Handle errors
         }

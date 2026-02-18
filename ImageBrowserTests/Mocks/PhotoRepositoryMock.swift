@@ -10,25 +10,27 @@ import Foundation
 
 actor PhotoRepositoryMock: PhotoRepositoryConvertible {
 
-    var photos: [Photo] = []
-
-    var hasNextPage = true
+    private var photos: [Photo] = []
+    private var hasNextPage = true
 
     enum Error: Swift.Error {
-        case noResponse
+        case deallocated
     }
-
-    private(set) var response: PhotoListResponse?
 
     private(set) var lastRequestedPage = 0
 
-    func fetchNextPage() async throws -> PagerResult {
-        guard hasNextPage else {
-            return .init(hasNextPage: false)
+    func pager(for requestType: PhotoRepository.RequestType) -> Pager<Photo> {
+        Pager<Photo> { [weak self] page, _ in
+            guard let self else {
+                throw Error.deallocated
+            }
+            return await mockedRequest(page: page)
         }
+    }
 
-        lastRequestedPage += 1
-        return .init(hasNextPage: true)
+    private func mockedRequest(page: Int) -> Pager<Photo>.PageResponse {
+        lastRequestedPage = page
+        return (items: photos, hasNextPage: hasNextPage)
     }
 
 }

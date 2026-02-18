@@ -7,8 +7,6 @@
 
 protocol PhotoRepositoryConvertible: Actor {
 
-    var photos: [Photo] { get async }
-
-    func fetchNextPage() async throws -> PagerResult
+    func pager(for requestType: PhotoRepository.RequestType) -> Pager<Photo>
 
 }

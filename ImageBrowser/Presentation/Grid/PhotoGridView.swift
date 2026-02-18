@@ -41,7 +41,7 @@ struct PhotoGridView: View {
             )
         }
         .task {
-            await viewModel.fetchNextPage()
+            await viewModel.onAppear()
         }
     }
 
@@ -81,7 +81,7 @@ struct PhotoGridView: View {
         .task {
             guard photo == viewModel.photos.last else { return }
 
-            await viewModel.fetchNextPage()
+            await viewModel.loadMore()
         }
     }
 

@@ -10,31 +10,41 @@ import Testing
 
 struct PagerTests {
 
-    let pager = Pager<PagerItem>()
-
-    enum Error: Swift.Error {
-        case unexpectedPage
+    struct Item: Identifiable {
+        let id: Int
     }
 
-    @Test func `Should fetch next page and increment page index`() async throws {
+    enum Error: Swift.Error {
+        case unexpectedPage(Int)
+    }
+
+    let store = PagerRequestStore<Item>()
+
+    @Test
+    func `Should fetch next page and increment page index`() async throws {
+        let pager = buildPager()
         await #expect(pager.items.isEmpty)
 
-        let result1 = await pager.fetchNextPage { page, limitPerPage in
+        // 1st page
+        await store.update { page, limitPerPage in
             #expect(page == 1)
             #expect(limitPerPage == 10)
-
-            return (items: [PagerItem(id: 1)], hasMore: true)
+            return (items: [Item(id: 1)], hasNextPage: true)
         }
+
+        let result1 = try await pager.loadMore()
 
         await #expect(pager.items.map(\.id) == [1])
         #expect(result1.hasNextPage)
 
-        let result2 = await pager.fetchNextPage { page, limitPerPage in
+        // 2nd page
+        await store.update { page, limitPerPage in
             #expect(page == 2)
             #expect(limitPerPage == 10)
-
-            return (items: [PagerItem(id: 2)], hasMore: true)
+            return (items: [Item(id: 2)], hasNextPage: true)
         }
+
+        let result2 = try await pager.loadMore()
 
         await #expect(pager.items.map(\.id) == [1, 2])
         #expect(result2.hasNextPage)
@@ -46,45 +56,65 @@ struct PagerTests {
         ([3], [1, 2, 3])
     ])
     func `Should ensure uniqueness accross pages`(additionalItemIDs: [Int], expectedIDs: [Int]) async throws {
-        _ = await pager.fetchNextPage { _, _ in
-            (items: [PagerItem(id: 1), PagerItem(id: 2)], hasMore: true)
+        let pager = buildPager()
+
+        // 1st page
+        await store.update { page, limitPerPage in
+            (items: [Item(id: 1), Item(id: 2)], hasNextPage: true)
         }
+        _ = try await pager.loadMore()
+
         await #expect(pager.items.map(\.id) == [1, 2])
 
-        _ = await pager.fetchNextPage { _, _ in
-            (items: additionalItemIDs.map(PagerItem.init(id:)), hasMore: false)
+        // 2nd page
+        await store.update { page, limitPerPage in
+            (items: additionalItemIDs.map(Item.init(id:)), hasNextPage: false)
         }
+        _ = try await pager.loadMore()
+
         await #expect(pager.items.map(\.id) == expectedIDs)
     }
 
-    @Test func `Should automatically fetch next page when fetched page only contains duplicates`() async throws {
-        _ = await pager.fetchNextPage { page, _ in
-            // First page
-            (items: [PagerItem(id: 1)], hasMore: true)
+    @Test
+    func `Should automatically fetch next page when fetched page only contains duplicates`() async throws {
+        let pager = buildPager()
+
+        // 1st page
+        await store.update { page, limitPerPage in
+            (items: [Item(id: 1)], hasNextPage: true)
         }
+        _ = try await pager.loadMore()
 
         try await confirmation(expectedCount: 2) { confirmation in
-            _ = try await pager.fetchNextPage { page, _ in
+            await store.update { page, _ in
                 confirmation()
 
                 return switch page {
                 case 2:
-                    // Second page with duplicates, will trigger another fetch
-                    (items: [PagerItem(id: 1)], hasMore: true)
+                    // 2nd page with duplicates, will trigger another fetch
+                    (items: [Item(id: 1)], hasNextPage: true)
                 case 3:
-                    // Third page with duplicates, all items already fetch
-                    (items: [PagerItem(id: 1)], hasMore: false)
+                    // 3rd page with duplicates, all items already fetch
+                    (items: [Item(id: 1)], hasNextPage: false)
                 default:
-                    throw Error.unexpectedPage
+                    throw Error.unexpectedPage(page)
                 }
             }
+            _ = try await pager.loadMore()
         }
     }
 
 }
 
-struct PagerItem: Identifiable {
+// MARK: - Utils
 
-    let id: Int
+extension PagerTests {
+
+    private func buildPager() -> Pager<Item> {
+        Pager<Item> { page, limitPerPage in
+            let request = try #require(await store.request)
+            return try await request(page, limitPerPage)
+        }
+    }
 
 }
