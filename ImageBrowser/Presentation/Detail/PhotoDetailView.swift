@@ -15,26 +15,26 @@ struct PhotoDetailView: View {
     let dismiss: () -> Void
     
     var body: some View {
-            ZStack(alignment: .topTrailing) {
-                ScrollView {
-                    VStack(spacing: .mediumPadding) {
-                        photoView
-                        text
-                    }
-                    .padding(.top, .largePadding)
-                    .padding(.horizontal)
+        ZStack(alignment: .topTrailing) {
+            ScrollView {
+                VStack(spacing: .mediumPadding) {
+                    photoView
+                    text
                 }
-                .scrollIndicators(.hidden)
+                .padding(.top, .largePadding)
+                .padding(.horizontal)
+            }
+            .scrollIndicators(.hidden)
 
-                CloseButton(action: dismiss)
-                    .padding(.horizontal)
-                    .padding(.landscape, .top, .smallPadding)
-            }
-            .background {
-                Color(hex: photo.averageHexColor)
-                    .adjustForColorScheme()
-                    .ignoresSafeArea()
-            }
+            CloseButton(action: dismiss)
+                .padding(.horizontal)
+                .padding(.landscape, .top, .smallPadding)
+        }
+        .background {
+            Color(hex: photo.averageHexColor)
+                .adjustForColorScheme()
+                .ignoresSafeArea()
+        }
     }
 
     private var photoView: some View {
