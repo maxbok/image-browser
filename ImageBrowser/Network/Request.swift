@@ -10,6 +10,7 @@ import Foundation
 enum Request {
 
     case curatedImages(page: Int, limit: Int)
+    case searchImages(query: String, page: Int, limit: Int)
 
 }
 
@@ -54,6 +55,7 @@ private extension Request {
     var path: String {
         switch self {
         case .curatedImages: "/v1/curated"
+        case .searchImages: "/v1/search"
         }
     }
 
@@ -61,6 +63,12 @@ private extension Request {
         switch self {
         case let .curatedImages(page, limit):
             [
+                URLQueryItem(name: "page", value: "\(page)"),
+                URLQueryItem(name: "per_page", value: "\(limit)")
+            ]
+        case let .searchImages(query, page, limit):
+            [
+                URLQueryItem(name: "query", value: query),
                 URLQueryItem(name: "page", value: "\(page)"),
                 URLQueryItem(name: "per_page", value: "\(limit)")
             ]

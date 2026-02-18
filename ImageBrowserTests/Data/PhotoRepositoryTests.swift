@@ -20,6 +20,7 @@ struct PhotoRepositoryTests {
 
     @Test(arguments: [
         PhotoRepository.RequestType.curated,
+        .query("nature")
     ])
     func `Should return photos`(requestType: PhotoRepository.RequestType) async throws {
         await session.update(fixtureName: "Photos")

@@ -31,6 +31,7 @@ extension PhotoRepository {
 
     enum RequestType: Hashable {
         case curated
+        case query(String)
     }
 
     enum Error: Swift.Error {
@@ -58,6 +59,8 @@ private extension PhotoRepository {
         switch requestType {
         case .curated:
             .curatedImages(page: page, limit: limitPerPage)
+        case let .query(query):
+            .searchImages(query: query, page: page, limit: limitPerPage)
         }
     }
 
