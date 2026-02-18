@@ -27,7 +27,10 @@ struct RemotePhoto: View {
                     .aspectRatio(contentMode: .fill)
             },
             placeholder: {
-                Color(hex: photo.averageHexColor)
+                ZStack {
+                    Color(hex: photo.averageHexColor)
+                    Skeleton(mode: .translucent)
+                }
             }
         )
     }
