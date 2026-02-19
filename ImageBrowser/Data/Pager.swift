@@ -32,26 +32,8 @@ actor Pager<Item: Identifiable & Sendable> {
         let response = try await request(page, limitPerPage)
         lastPageFetched = page
 
-        let filteredPhotos = removeDuplicates(in: response.items)
-
-        guard !filteredPhotos.isEmpty else {
-            guard response.hasNextPage else {
-                return PagerResult(hasNextPage: false)
-            }
-            return try await loadMore()
-        }
-
-        items.append(contentsOf: filteredPhotos)
+        items.append(contentsOf: response.items)
         return PagerResult(hasNextPage: response.hasNextPage)
-    }
-
-    private func removeDuplicates(in otherItems: [Item]) -> [Item] {
-        // Map ids once
-        let itemIDs = items.map(\.id)
-        // Ensure uniqueness accross pages
-        return otherItems.filter {
-            !itemIDs.contains($0.id)
-        }
     }
 
 }
