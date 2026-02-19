@@ -9,7 +9,7 @@ import Foundation
 
 struct PhotoListResponse {
 
-    let photos: [Photo]
+    let photos: [PhotoDto]
     let hasNextPage: Bool
 
 }
@@ -24,7 +24,7 @@ extension PhotoListResponse: Decodable {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        photos = try container.decode([Photo].self, forKey: .photos)
+        photos = try container.decode([PhotoDto].self, forKey: .photos)
         let nextPage = try container.decodeIfPresent(String.self, forKey: .nextPage)
         hasNextPage = nextPage != nil
     }

@@ -31,7 +31,7 @@ struct PhotoDetailView: View {
                 .padding(.landscape, .top, .smallPadding)
         }
         .background {
-            Color(hex: photo.averageHexColor)
+            Color(hex: photo.metadata.averageHexColor)
                 .adjustForColorScheme()
                 .ignoresSafeArea()
         }

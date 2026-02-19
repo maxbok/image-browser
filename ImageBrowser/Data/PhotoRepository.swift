@@ -66,7 +66,10 @@ private extension PhotoRepository {
 
     func execute(request: Request) async throws -> Pager<Photo>.PageResponse {
         let response: PhotoListResponse = try await session.send(request: request)
-        return (items: response.photos, hasNextPage: response.hasNextPage)
+        return (
+            items: response.photos.map(Photo.init(from:)),
+            hasNextPage: response.hasNextPage
+        )
     }
 
     func cache(pager: Pager<Photo>, for requestType: RequestType) {

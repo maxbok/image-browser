@@ -7,28 +7,26 @@
 
 import Foundation
 
-struct Photo: Identifiable, Equatable, Decodable {
+struct Photo: Identifiable {
 
-    let id: Int
+    let id: UUID // Ensures uniqueness
     let photographer: String
     let description: String
-    let averageHexColor: String
-    let width: Int
-    let height: Int
+    let metadata: Metadata
     let source: Source
 
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case photographer
-        case description = "alt"
-        case averageHexColor = "avg_color"
-        case width
-        case height
-        case source = "src"
-    }
+}
 
-    static func == (lhs: Photo, rhs: Photo) -> Bool {
-        lhs.id == rhs.id
+// MARK: - Metadata
+
+extension Photo {
+
+    struct Metadata {
+
+        let averageHexColor: String
+        let width: Int
+        let height: Int
+
     }
 
 }
@@ -37,16 +35,39 @@ struct Photo: Identifiable, Equatable, Decodable {
 
 extension Photo {
 
-    struct Source: Decodable {
+    struct Source {
 
         let tiny: URL
         let large: URL
 
-        private enum CodingKeys: String, CodingKey {
-            case tiny
-            case large = "large2x"
-        }
+    }
 
+}
+
+// MARK: - Equatable
+
+extension Photo: Equatable {
+
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        lhs.id == rhs.id
+    }
+
+}
+
+// MARK: - Init from dto
+
+extension Photo {
+
+    init(from dto: PhotoDto) {
+        id = UUID()
+        photographer = dto.photographer
+        description = dto.description
+        metadata = Metadata(
+            averageHexColor: dto.averageHexColor,
+            width: dto.width,
+            height: dto.height
+        )
+        source = Source(tiny: dto.source.tiny, large: dto.source.large)
     }
 
 }

@@ -37,10 +37,11 @@ struct PhotoRepositoryTests {
 
         let photo = try #require(photos.first)
 
-        #expect(photo.id == 33563161)
         #expect(photo.photographer == "Natalie Goodwin")
         #expect(photo.description == "A trendy succulent in a red pot atop plant-themed books, perfect for interior design inspiration.")
-        #expect(photo.averageHexColor == "#B0A390")
+        #expect(photo.metadata.averageHexColor == "#B0A390")
+        #expect(photo.metadata.width == 2500)
+        #expect(photo.metadata.height == 2500)
         #expect(photo.source.tiny.absoluteString == "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280")
         #expect(photo.source.large.absoluteString == "https://images.pexels.com/photos/33563161/pexels-photo-33563161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     }

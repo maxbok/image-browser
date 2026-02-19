@@ -28,7 +28,7 @@ struct RemotePhoto: View {
             },
             placeholder: {
                 ZStack {
-                    Color(hex: photo.averageHexColor)
+                    Color(hex: photo.metadata.averageHexColor)
                     Skeleton(mode: .translucent)
                 }
             }
